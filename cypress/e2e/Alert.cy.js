@@ -43,7 +43,12 @@ describe('JS Alert', function () {
         cy.get('#result').should('have.text', 'You entered: I Am Learning Js')
     })
 
-    it('Js Prompt with cancel', function () {
-
-    })
+    it.only('Js Prompt with cancel', function () {
+        cy.on('window:prompt', function (str) {
+            
+            return false
+        })
+        cy.contains('Click for JS Prompt').click()
+        cy.get('#result').should('have.text', 'You entered: null')
+})
 })
